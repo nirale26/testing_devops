@@ -1,23 +1,29 @@
 pipeline {
         
-        agent {
+          stages {
+                stage('slave2 Build') { 
+                        agent {
                   label 'slave2'
                 }
-            stages {
-                stage('Build') { 
                     steps{
-                           sh 'sleep 5'
+                          sh 'sleep 5'
                         
                         }
                 }                    
                    
-                stage('Test') { 
+                stage('slave1 Test') { 
+                        agent {
+                  label 'slave1'
+                }
                      steps{
                            sh 'sleep 5'
                         
                         }
                      }
-                stage('Deploy') { 
+                stage('Master deploy') { 
+                        agent {
+                  label 'Master'
+                }
                      steps{
                            sh 'sleep 5'
                         
