@@ -13,10 +13,11 @@ pipeline {
                 }                    
                    
                 stage('slave1 Test') { 
-                        script{
-                                env.Build_stage = 'ravi'
-                        }
+                        
                      steps{
+                          script{
+                                env.Build_stage = 'ravi'
+                                }
                            sh 'sleep 5'
                         
                         }
