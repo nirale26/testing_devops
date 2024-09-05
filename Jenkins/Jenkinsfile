@@ -25,7 +25,7 @@ pipeline{
                 steps{
                     script{
                         if (test_result == true){
-                            echo "stage slave1 success ful"
+                            echo "Master Build success ful so slave1 executed"
                             sh 'sleep 5'
                         }
                     }
@@ -36,7 +36,7 @@ pipeline{
                 steps{
                     script{
                         if (test_result == false){
-                            echo "stage slave2 success ful with error message"
+                            echo "Master Build failed so slave 2 executed"
                             sh 'sleep 5'
                         }
                 }
