@@ -34,7 +34,7 @@ pipeline {
                      steps{
                            sh 'sleep 5'
                            // echo "{$Depoly_To}"
-                           echo "{$Build_stage}"  
+                           echo "${env.Build_stage}"  
                         }
                    
                     }
