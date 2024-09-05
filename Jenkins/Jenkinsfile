@@ -16,7 +16,7 @@ pipeline {
                         
                      steps{
                           script{
-                                ${env.Build_stage} = 'ravi'
+                                Build_stage = 'ravi'
                                 }
                            sh 'sleep 5'
                         
