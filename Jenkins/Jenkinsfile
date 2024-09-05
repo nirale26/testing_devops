@@ -1,35 +1,45 @@
-pipeline {
-        agent any
-        environment {
-                  Build_stage = 'yes'
-                }
-          stages {
-                stage('slave2 Build') { 
-                       
-                    steps{
-                          sh 'sleep 5'
-                        
-                        }
-                }                    
-                   
-                stage('slave1 Test') { 
-                        
-                     steps{
-                          script{
-                                Build_stage = 'ravi'
-                                }
-                           sh 'sleep 5'
-                        
-                        }
-                     }
-                stage('Master deploy') { 
-                        
-                    steps{
-                           sh 'sleep 5'
-                           // echo "{$Depoly_To}"
-                           echo "${env.Build_stage}"  
-                        }
-                   
-                    }
-            }
+boolean test_result = True
+pipeline{
+    agent any
+    environment {
+        Build_stage = 'yes'
     }
+    stages{
+            stage('Master Build'){
+                steps{
+                    script{
+                        try{
+                            echo 'hellow wolrd'
+                            sh 'sleep 5'
+                        }catch(Exception e){
+                            echo "stage master failed"
+                            test_result = False
+                        }
+
+                    }
+                    
+                }
+
+            stage('slave1 Test'){
+                steps{
+                    script{
+                        if test_result == True{
+                            echo "stage slave1 success ful"
+                            sh 'sleep 5'
+                        }
+                    }
+                    
+                }
+            }
+            stage('slave2  Depoly'){
+                steps{
+                    script{
+                        if test_result == False{
+                            echo "stage slave2 success ful with error message"
+                            sh 'sleep 5'
+                        }
+                }
+            }
+        }
+    }
+}
