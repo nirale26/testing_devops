@@ -11,10 +11,10 @@ pipeline{
                         try{
                             echo 'hellow wolrd'
                             sh 'sleep 5'
-                            test_result = False
+                            test_result = false
                         }catch(Exception e){
                             echo "stage master failed"
-                            test_result = False
+                            test_result = false
                         }
 
                     }
