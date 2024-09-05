@@ -23,7 +23,7 @@ pipeline{
             stage('slave1 Test'){
                 steps{
                     script{
-                        if test_result == True{
+                        if test_result == true{
                             echo "stage slave1 success ful"
                             sh 'sleep 5'
                         }
