@@ -23,7 +23,7 @@ pipeline{
             stage('slave1 Test'){
                 steps{
                     script{
-                        if test_result == true{
+                        if (test_result == true){
                             echo "stage slave1 success ful"
                             sh 'sleep 5'
                         }
@@ -34,7 +34,7 @@ pipeline{
             stage('slave2  Depoly'){
                 steps{
                     script{
-                        if test_result == False{
+                        if (test_result == False){
                             echo "stage slave2 success ful with error message"
                             sh 'sleep 5'
                         }
