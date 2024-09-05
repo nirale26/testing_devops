@@ -1,4 +1,4 @@
-boolean test_result = True
+boolean test_result = true
 pipeline{
     agent any
     environment {
@@ -34,7 +34,7 @@ pipeline{
             stage('slave2  Depoly'){
                 steps{
                     script{
-                        if (test_result == False){
+                        if (test_result == false){
                             echo "stage slave2 success ful with error message"
                             sh 'sleep 5'
                         }
