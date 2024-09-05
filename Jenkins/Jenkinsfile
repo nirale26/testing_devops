@@ -19,6 +19,7 @@ pipeline{
                     }
                     
                 }
+            }   
 
             stage('slave1 Test'){
                 steps{
@@ -42,5 +43,4 @@ pipeline{
             }
         }
     }
-}
 }
