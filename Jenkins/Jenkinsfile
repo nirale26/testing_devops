@@ -1,13 +1,11 @@
 pipeline {
-        agent none
+        agent any
         environment {
                   Build_stage = "yes"
                 }
           stages {
                 stage('slave2 Build') { 
-                        agent {
-                  label 'slave2'
-                }
+                       
                     steps{
                           sh 'sleep 5'
                         
@@ -15,12 +13,9 @@ pipeline {
                 }                    
                    
                 stage('slave1 Test') { 
-                        environment {
-                          Depoly_To = "yes"
+                        script{
+                                env.Build_stage = ravi
                         }
-                        agent {
-                  label 'slave1'
-                }
                      steps{
                            sh 'sleep 5'
                         
@@ -28,10 +23,7 @@ pipeline {
                      }
                 stage('Master deploy') { 
                         
-                    agent {
-                  label 'Master'
-                }
-                     steps{
+                    steps{
                            sh 'sleep 5'
                            // echo "{$Depoly_To}"
                            echo "${env.Build_stage}"  
