@@ -1,7 +1,7 @@
 pipeline {
         agent any
         environment {
-                  Build_stage = "yes"
+                  Build_stage = 'yes'
                 }
           stages {
                 stage('slave2 Build') { 
