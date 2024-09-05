@@ -1,5 +1,8 @@
 pipeline {
         agent none
+        environment {
+                  Build_stage = "yes"
+                }
           stages {
                 stage('slave2 Build') { 
                         agent {
@@ -12,6 +15,9 @@ pipeline {
                 }                    
                    
                 stage('slave1 Test') { 
+                        environment {
+                          Depoly_To = "yes"
+                        }
                         agent {
                   label 'slave1'
                 }
@@ -21,12 +27,14 @@ pipeline {
                         }
                      }
                 stage('Master deploy') { 
-                        agent {
+                        
+                    agent {
                   label 'Master'
                 }
                      steps{
                            sh 'sleep 5'
-                        
+                           echo "{$Depoly_To}"
+                           echo "{$Build_stage}"  
                         }
                    
                     }
